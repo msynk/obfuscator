@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using NineRays.ILOMD.Options;
 
 namespace MiniObfuscator.Core
 {
   public class ObfuscatorSettings
   {
     private readonly List<string> _assemblyPaths = new List<string>();
-    private readonly List<string> _bookmarks = new List<string>(); 
+    private readonly List<string> _bookmarks = new List<string>();
 
     /// <summary>
     ///   Gets all assembly file paths
@@ -57,7 +56,7 @@ namespace MiniObfuscator.Core
     /// <summary>
     ///   Gets and sets the option for verifying the assemblies after obfuscation
     /// </summary>
-    public YesNoPrompt VerifyAfterObfuscation { get; set; }
+    public Enums.YesNoPrompt VerifyAfterObfuscation { get; set; }
 
 
 
@@ -74,7 +73,7 @@ namespace MiniObfuscator.Core
     ///   Validates current settings
     /// </summary>
     /// <returns></returns>
-    public bool Validate()
+    internal bool Validate()
     {
       return _assemblyPaths.Count != 0 && !string.IsNullOrEmpty(OutputPath) && ObfuscateLoggerSettings != null && ObfuscateLoggerSettings.Validate();
     }
@@ -83,7 +82,7 @@ namespace MiniObfuscator.Core
     ///   Checks if a valid Strong Name Key file has provided
     /// </summary>
     /// <returns></returns>
-    public bool HasSnKey()
+    internal bool HasSnKey()
     {
       return !string.IsNullOrEmpty(StrongNameKeyFilePath) && File.Exists(StrongNameKeyFilePath);
     }

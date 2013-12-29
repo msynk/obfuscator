@@ -62,6 +62,7 @@
     <Compile Include="Enums\ResourceProtection.cs" />
     <Compile Include="Enums\Anonymizers.cs" />
     <Compile Include="Enums\Members.cs" />
+    <Compile Include="Enums\YesNoPrompt.cs" />
     <Compile Include="ObfuscateOptions.cs" />
     <Compile Include="ObfuscatorSettings.cs" />
     <Compile Include="Obfuscator.cs" />

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MiniObfuscator.Core;
+using MiniObfuscator.Core.Enums;
 
 namespace MiniObfuscator.WinUI
 {
@@ -40,12 +41,14 @@ namespace MiniObfuscator.WinUI
     private System.Windows.Forms.Label label2;
     private TextBox txtOutputPath;
     private System.Windows.Forms.Label label3;
-    private TextBox txtStrongNameKeyFile;
+    private TextBox txtStrongNameKeyFilePath;
     private Button btnBrowseAssembly;
     private Button btnBrowseOutputFolder;
     private Button btnBrowseStrongNameKeyFile;
     private RichTextBox rtbResults;
     private Button btnSetOptions;
+    private Label label4;
+    private TextBox txtStrongNameKeyFilePassword;
     private Container components;
 
     #endregion
@@ -62,12 +65,14 @@ namespace MiniObfuscator.WinUI
       this.label2 = new System.Windows.Forms.Label();
       this.txtOutputPath = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
-      this.txtStrongNameKeyFile = new System.Windows.Forms.TextBox();
+      this.txtStrongNameKeyFilePath = new System.Windows.Forms.TextBox();
       this.btnBrowseAssembly = new System.Windows.Forms.Button();
       this.btnBrowseOutputFolder = new System.Windows.Forms.Button();
       this.btnBrowseStrongNameKeyFile = new System.Windows.Forms.Button();
       this.rtbResults = new System.Windows.Forms.RichTextBox();
       this.btnSetOptions = new System.Windows.Forms.Button();
+      this.label4 = new System.Windows.Forms.Label();
+      this.txtStrongNameKeyFilePassword = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // txtAssembly
@@ -76,7 +81,7 @@ namespace MiniObfuscator.WinUI
             | System.Windows.Forms.AnchorStyles.Right)));
       this.txtAssembly.BackColor = System.Drawing.SystemColors.HighlightText;
       this.txtAssembly.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.txtAssembly.Location = new System.Drawing.Point(127, 9);
+      this.txtAssembly.Location = new System.Drawing.Point(127, 7);
       this.txtAssembly.Name = "txtAssembly";
       this.txtAssembly.Size = new System.Drawing.Size(397, 20);
       this.txtAssembly.TabIndex = 1;
@@ -100,18 +105,18 @@ namespace MiniObfuscator.WinUI
       this.label1.AutoSize = true;
       this.label1.Location = new System.Drawing.Point(10, 11);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(54, 13);
+      this.label1.Size = new System.Drawing.Size(58, 13);
       this.label1.TabIndex = 3;
-      this.label1.Text = "Assembly:";
+      this.label1.Text = "*Assembly:";
       // 
       // label2
       // 
       this.label2.AutoSize = true;
       this.label2.Location = new System.Drawing.Point(10, 38);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(71, 13);
+      this.label2.Size = new System.Drawing.Size(75, 13);
       this.label2.TabIndex = 5;
-      this.label2.Text = "Output folder:";
+      this.label2.Text = "*Output folder:";
       // 
       // txtOutputPath
       // 
@@ -119,7 +124,7 @@ namespace MiniObfuscator.WinUI
             | System.Windows.Forms.AnchorStyles.Right)));
       this.txtOutputPath.BackColor = System.Drawing.SystemColors.HighlightText;
       this.txtOutputPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.txtOutputPath.Location = new System.Drawing.Point(127, 35);
+      this.txtOutputPath.Location = new System.Drawing.Point(127, 34);
       this.txtOutputPath.Name = "txtOutputPath";
       this.txtOutputPath.Size = new System.Drawing.Size(397, 20);
       this.txtOutputPath.TabIndex = 2;
@@ -133,16 +138,16 @@ namespace MiniObfuscator.WinUI
       this.label3.TabIndex = 7;
       this.label3.Text = "Strong Name Key file:";
       // 
-      // txtStrongNameKeyFile
+      // txtStrongNameKeyFilePath
       // 
-      this.txtStrongNameKeyFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.txtStrongNameKeyFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtStrongNameKeyFile.BackColor = System.Drawing.SystemColors.HighlightText;
-      this.txtStrongNameKeyFile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.txtStrongNameKeyFile.Location = new System.Drawing.Point(127, 62);
-      this.txtStrongNameKeyFile.Name = "txtStrongNameKeyFile";
-      this.txtStrongNameKeyFile.Size = new System.Drawing.Size(397, 20);
-      this.txtStrongNameKeyFile.TabIndex = 3;
+      this.txtStrongNameKeyFilePath.BackColor = System.Drawing.SystemColors.HighlightText;
+      this.txtStrongNameKeyFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.txtStrongNameKeyFilePath.Location = new System.Drawing.Point(127, 61);
+      this.txtStrongNameKeyFilePath.Name = "txtStrongNameKeyFilePath";
+      this.txtStrongNameKeyFilePath.Size = new System.Drawing.Size(397, 20);
+      this.txtStrongNameKeyFilePath.TabIndex = 3;
       // 
       // btnBrowseAssembly
       // 
@@ -162,7 +167,7 @@ namespace MiniObfuscator.WinUI
       this.btnBrowseOutputFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.btnBrowseOutputFolder.BackColor = System.Drawing.SystemColors.Control;
       this.btnBrowseOutputFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnBrowseOutputFolder.Location = new System.Drawing.Point(530, 35);
+      this.btnBrowseOutputFolder.Location = new System.Drawing.Point(530, 34);
       this.btnBrowseOutputFolder.Name = "btnBrowseOutputFolder";
       this.btnBrowseOutputFolder.Size = new System.Drawing.Size(26, 21);
       this.btnBrowseOutputFolder.TabIndex = 9;
@@ -175,7 +180,7 @@ namespace MiniObfuscator.WinUI
       this.btnBrowseStrongNameKeyFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.btnBrowseStrongNameKeyFile.BackColor = System.Drawing.SystemColors.Control;
       this.btnBrowseStrongNameKeyFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnBrowseStrongNameKeyFile.Location = new System.Drawing.Point(530, 62);
+      this.btnBrowseStrongNameKeyFile.Location = new System.Drawing.Point(530, 61);
       this.btnBrowseStrongNameKeyFile.Name = "btnBrowseStrongNameKeyFile";
       this.btnBrowseStrongNameKeyFile.Size = new System.Drawing.Size(26, 21);
       this.btnBrowseStrongNameKeyFile.TabIndex = 10;
@@ -190,9 +195,9 @@ namespace MiniObfuscator.WinUI
             | System.Windows.Forms.AnchorStyles.Right)));
       this.rtbResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.rtbResults.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.rtbResults.Location = new System.Drawing.Point(3, 89);
+      this.rtbResults.Location = new System.Drawing.Point(3, 113);
       this.rtbResults.Name = "rtbResults";
-      this.rtbResults.Size = new System.Drawing.Size(731, 269);
+      this.rtbResults.Size = new System.Drawing.Size(731, 252);
       this.rtbResults.TabIndex = 11;
       this.rtbResults.Text = "";
       this.rtbResults.WordWrap = false;
@@ -208,10 +213,32 @@ namespace MiniObfuscator.WinUI
       this.btnSetOptions.UseVisualStyleBackColor = false;
       this.btnSetOptions.Click += new System.EventHandler(this.btnSetOptions_Click);
       // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(10, 91);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(110, 13);
+      this.label4.TabIndex = 13;
+      this.label4.Text = "SN Key file password:";
+      // 
+      // txtStrongNameKeyFilePassword
+      // 
+      this.txtStrongNameKeyFilePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtStrongNameKeyFilePassword.BackColor = System.Drawing.SystemColors.HighlightText;
+      this.txtStrongNameKeyFilePassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.txtStrongNameKeyFilePassword.Location = new System.Drawing.Point(127, 87);
+      this.txtStrongNameKeyFilePassword.Name = "txtStrongNameKeyFilePassword";
+      this.txtStrongNameKeyFilePassword.Size = new System.Drawing.Size(397, 20);
+      this.txtStrongNameKeyFilePassword.TabIndex = 14;
+      // 
       // MainForm
       // 
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
       this.ClientSize = new System.Drawing.Size(738, 366);
+      this.Controls.Add(this.txtStrongNameKeyFilePassword);
+      this.Controls.Add(this.label4);
       this.Controls.Add(this.btnSetOptions);
       this.Controls.Add(this.rtbResults);
       this.Controls.Add(this.btnBrowseStrongNameKeyFile);
@@ -220,7 +247,7 @@ namespace MiniObfuscator.WinUI
       this.Controls.Add(this.label3);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
-      this.Controls.Add(this.txtStrongNameKeyFile);
+      this.Controls.Add(this.txtStrongNameKeyFilePath);
       this.Controls.Add(this.txtOutputPath);
       this.Controls.Add(this.btnObfuscateIt);
       this.Controls.Add(this.txtAssembly);
@@ -262,7 +289,7 @@ namespace MiniObfuscator.WinUI
     {
       var ofd = new OpenFileDialog
       {
-        Title = "Choose assembly for obfuscation",
+        Title = "Select assembly for obfuscation",
         Filter = "Executables(*.exe;*.dll)|*.exe;*.dll|All files (*.*)|*.*",
         FilterIndex = 1,
         InitialDirectory = Directory.GetCurrentDirectory()
@@ -276,7 +303,7 @@ namespace MiniObfuscator.WinUI
     {
       var bfd = new FolderBrowserDialog
       {
-        Description = "Choose the folder to save obfuscated assembly",
+        Description = "Select the folder to save obfuscated assembly",
         SelectedPath = Directory.GetCurrentDirectory(),
         ShowNewFolderButton = true
       };
@@ -287,12 +314,12 @@ namespace MiniObfuscator.WinUI
     {
       var ofd = new OpenFileDialog
       {
-        Title = "Choose strong name key file to resign assembly after obfuscation",
+        Title = "Select strong name key file to resign assembly after obfuscation",
         Filter = "Strong name key files(*.snk)|*.snk|All files (*.*)|*.*",
         FilterIndex = 1,
         InitialDirectory = Directory.GetCurrentDirectory()
       };
-      txtStrongNameKeyFile.Text = (ofd.ShowDialog(this) == DialogResult.OK) ? ofd.FileName : string.Empty;
+      txtStrongNameKeyFilePath.Text = (ofd.ShowDialog(this) == DialogResult.OK) ? ofd.FileName : string.Empty;
     }
 
     private void btnSetOptions_Click(object sender, EventArgs e)
@@ -310,19 +337,26 @@ namespace MiniObfuscator.WinUI
       {
         var obfuscatorSettings = GenerateObfuscateSettings();
         var obfuscator = new Obfuscator(obfuscatorSettings);
-        MessageBox.Show(obfuscator.Obfuscate() ? "Obfuscation succeded" : "Obfuscation failed", "Obfuscation results");
+        MessageBox.Show(obfuscator.Obfuscate() ? "Obfuscate succeded" : "Obfuscate failed", "Obfuscate results");
       }
       else
       {
-        rtbResults.Text += "\r\nNothing to obfuscate";
+        rtbResults.Text += "Select an assembly" + Environment.NewLine;
       }
     }
 
     private ObfuscatorSettings GenerateObfuscateSettings()
     {
-      var obfuscatorSettings = new ObfuscatorSettings();
+      var obfuscatorSettings = new ObfuscatorSettings
+      {
+        CheckConsistencyBeforeObfuscation = false,
+        VerifyAfterObfuscation = YesNoPrompt.No,
+        OutputPath = txtOutputPath.Text,
+        StripDebugInfo = true,
+        StrongNameKeyFilePath = txtStrongNameKeyFilePath.Text,
+        StrongNameKeyFilePassword = txtStrongNameKeyFilePassword.Text
+      };
       obfuscatorSettings.AddAssembly(txtAssembly.Text);
-      obfuscatorSettings.OutputPath = txtOutputPath.Text;
       if (_optionsForm != null && _optionsForm.Options != null)
       {
         obfuscatorSettings.ObfuscateOptions = _optionsForm.Options;

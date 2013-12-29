@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-using NineRays.Collections.Specialized;
-using NineRays.ILOMD;
+﻿using NineRays.ILOMD;
 using NineRays.ILOMD.Options;
 
 namespace MiniObfuscator.Core
@@ -28,7 +25,7 @@ namespace MiniObfuscator.Core
       var project = new Project
       {
         StripDebugInfo = Settings.StripDebugInfo,
-        VerifyAfterObfuscation = Settings.VerifyAfterObfuscation,
+        VerifyAfterObfuscation = (YesNoPrompt)Settings.VerifyAfterObfuscation,
         SaveToDirectory = Settings.OutputPath,
         CheckConsistencyBeforeObfuscation = Settings.CheckConsistencyBeforeObfuscation
       };
@@ -45,11 +42,12 @@ namespace MiniObfuscator.Core
       if (Settings.HasSnKey())
       {
         project.StrongNameKeyFile = Settings.StrongNameKeyFilePath;
+        if (!string.IsNullOrEmpty(Settings.StrongNameKeyFilePassword))
+        {
+          project.StrongNameKeyFilePassword = Settings.StrongNameKeyFilePassword;
+        }
       }
-      if (!string.IsNullOrEmpty(Settings.StrongNameKeyFilePassword))
-      {
-        project.StrongNameKeyFilePassword = Settings.StrongNameKeyFilePassword;
-      }
+      
       return project;
     }
 
