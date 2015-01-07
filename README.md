@@ -1,4 +1,4 @@
 obfuscator
 ==========
 
-a tool for obfuscating .net libraries
+a simple tool for obfuscating .net assemblies.
